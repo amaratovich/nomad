@@ -8,7 +8,6 @@ import TrackPackages from "../TrackPackage/TrackPackage";
 import AboutNomad from "../AboutNomad/AboutNomad";
 import Partners from "../Partners/Partners";
 import PriceAdvantage from "../PriceAdvantage/PriceAdvantage";
-import {COLOR} from "../../constants";
 import ContactUs from "../ContactUs/ContactUs";
 import Footer from "../Footer/Footer";
 import FixedButton from "../FixedButtonForCalling/FixedButtonForCalling";
@@ -27,7 +26,9 @@ const WholeContent = () => {
             <PriceAdvantage/>
             <ContactUs/>
             <Footer/>
-            <FixedButton>Позвонить</FixedButton>
+            <div className = "phone">
+                <FixedButton>Позвонить</FixedButton>
+            </div>
         </Wrapper>
     )
 }
@@ -36,4 +37,12 @@ export default WholeContent
 
 const Wrapper = styled.div`
     position: relative;
+    .phone{
+        position: fixed;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        bottom: 10%;
+        right: 5%;
+    }
 `

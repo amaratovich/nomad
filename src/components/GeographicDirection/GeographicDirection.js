@@ -7,6 +7,8 @@ import RightArrow from "../../assets/Triangle-right-arrow.png"
 const GeographicDirection = () => {
 	return (
 		<Wrapper>
+			<div className = "big_container">
+
 			<div className="container">
 				<header>
 					<SectionTitles right={true}>Географические направления</SectionTitles>
@@ -75,6 +77,7 @@ const GeographicDirection = () => {
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 
 		</Wrapper>

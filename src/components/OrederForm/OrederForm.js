@@ -1,43 +1,43 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import OrderFormInputsForBishkek from "./OrderFormInputsForBishkek";
 import OrderInputFormsForKyrgyzstan from "./OrderInputFormsForKyrgyzstan";
 
 const OrderForm = () => {
-  const [isBishkekActive, setIsBishkekActive] = useState(true);
+	const [isBishkekActive, setIsBishkekActive] = useState(true);
 
-  const changeActive = () => {
-    setIsBishkekActive(!isBishkekActive);
-  };
+	const changeActive = () => {
+		setIsBishkekActive(!isBishkekActive);
+	};
 
-  return (
-    <Wrapper>
-      <div className="order_content">
-        <div className="order_header">
-          <h3>Оформление заявки</h3>
-          <div className="order_header_buttons">
-            <button
-              className={`order_header_button ${isBishkekActive && "active"}`}
-              onClick={changeActive}
-            >
-              Бишкек
-            </button>
-            <button
-              className={`order_header_button ${!isBishkekActive && "active"}`}
-              onClick={changeActive}
-            >
-              Кыргызстан
-            </button>
-          </div>
-        </div>
-        {isBishkekActive ? (
-          <OrderFormInputsForBishkek />
-        ) : (
-          <OrderInputFormsForKyrgyzstan />
-        )}
-      </div>
-    </Wrapper>
-  );
+	return (
+		<Wrapper>
+			<div className="order_content">
+				<div className="order_header">
+					<h3>Оформление заявки</h3>
+					<div className="order_header_buttons">
+						<button
+							className={`order_header_button ${isBishkekActive && "active"}`}
+							onClick={changeActive}
+						>
+							Бишкек
+						</button>
+						<button
+							className={`order_header_button ${!isBishkekActive && "active"}`}
+							onClick={changeActive}
+						>
+							Кыргызстан
+						</button>
+					</div>
+				</div>
+				{isBishkekActive ? (
+					<OrderFormInputsForBishkek/>
+				) : (
+					<OrderInputFormsForKyrgyzstan/>
+				)}
+			</div>
+		</Wrapper>
+	);
 };
 
 export default OrderForm;

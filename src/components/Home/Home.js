@@ -28,8 +28,9 @@ export default Home
 const Wrapper = styled.div`
   position: relative;
   //min-height: 100vh;
-  padding-top: 118px;
+  //padding-top: 118px;
   padding-bottom: 15px;
+  //margin-top: 100px;
   z-index: 10;
 
   .responsive_header {
@@ -43,10 +44,11 @@ const Wrapper = styled.div`
     position: absolute;
     inset: 0;
     z-index: -1;
+    //top: -118px;
 
     img {
       width: 100%;
-      height: 100%;
+      //height: 100%;
       //min-height: 100vh;
       background-position: right;
       background-size: contain;
@@ -66,6 +68,7 @@ const Wrapper = styled.div`
   }
 
   .home_container {
+    padding-top: 118px;
     @media (min-width: 1400px) {
       max-width: 1200px;
       position: relative;

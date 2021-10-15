@@ -18,12 +18,7 @@ const FixedButton = ({children}) => {
 export default FixedButton
 
 const Wrapper = styled.div`
-  position: fixed;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  bottom: 10%;
-  right: 5%;
+ 
   cursor: pointer;
   padding: 15px 20px;
   background: #FFFFFF;

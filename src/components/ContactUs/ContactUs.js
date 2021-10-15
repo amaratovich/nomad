@@ -4,7 +4,7 @@ import Facebook from "../../assets/facebook.png"
 import WhatsApp from "../../assets/Whatsapp.png"
 import Telegram from "../../assets/Telegram.png"
 import Instagram from "../../assets/instagram .png"
-
+import { YMaps, Map } from 'react-yandex-maps';
 const ContactUs = () => {
 	return (
 		<Wrapper id={"contacts"}>
@@ -41,9 +41,13 @@ const ContactUs = () => {
 
 				</header>
 				<div className="map">
-					<iframe
-						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.4140904512465!2d74.60544341434502!3d42.86410331111518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb7cdb49a22c9%3A0x3c593b7d77de8b7a!2zNjcg0YPQuy4g0KLRg9Cz0L7Qu9Cx0LDQuSDQkNGC0LAsINCR0LjRiNC60LXQug!5e0!3m2!1sru!2skg!4v1633578039546!5m2!1sru!2skg"
-						style={{border: "0"}} allowFullScreen="" loading="lazy"></iframe>
+					<YMaps>
+							<Map defaultState={{ center: [42.864578, 74.608965], zoom: 15 ,}}     width={'100%'}
+							     height={'60vh'} />
+					</YMaps>
+					{/*<iframe*/}
+					{/*	src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.4140904512465!2d74.60544341434502!3d42.86410331111518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb7cdb49a22c9%3A0x3c593b7d77de8b7a!2zNjcg0YPQuy4g0KLRg9Cz0L7Qu9Cx0LDQuSDQkNGC0LAsINCR0LjRiNC60LXQug!5e0!3m2!1sru!2skg!4v1633578039546!5m2!1sru!2skg"*/}
+					{/*	style={{border: "0"}} allowFullScreen="" loading="lazy"></iframe>*/}
 				</div>
 			</div>
 		</Wrapper>
@@ -117,7 +121,10 @@ const Wrapper = styled.div`
 
   .map {
     margin-top: 70px;
-
+.ymaps-2-1-79-map{
+  width: 500px;
+}
+    
     iframe {
       height: 600px;
       width: 100%;
