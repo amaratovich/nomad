@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from "styled-components"
 import Navbar from "../Navbar";
 import Home from "../Home/Home";
@@ -11,13 +11,17 @@ import PriceAdvantage from "../PriceAdvantage/PriceAdvantage";
 import ContactUs from "../ContactUs/ContactUs";
 import Footer from "../Footer/Footer";
 import FixedButton from "../FixedButtonForCalling/FixedButtonForCalling";
+import {useTranslation} from "react-i18next";
 
 
 const WholeContent = () => {
+    const {t} = useTranslation()
+    const [langLogo, setLangLogo] = useState(localStorage.getItem('lang') || 'ru')
+
     return (
         <Wrapper>
-            <Navbar/>
-            <Home/>
+            <Navbar langLogo={langLogo} setLangLogo={setLangLogo}/>
+            <Home lang={langLogo}/>
             <Services/>
             <GeographicDirection/>
             <TrackPackages/>
@@ -27,7 +31,7 @@ const WholeContent = () => {
             <ContactUs/>
             <Footer/>
             <div className = "phone">
-                <FixedButton>Позвонить</FixedButton>
+                <FixedButton>{t('contactUs.Позвонить')}</FixedButton>
             </div>
         </Wrapper>
     )

@@ -1,219 +1,287 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import SelectArrow from "../../assets/select_arrow.png"
+import {useTranslation} from "react-i18next";
+import {getCitiesRequest, getDistrictsRequest} from "../../utills/api";
 
-const OrderInputFormsForKyrgyzstan = () => {
-	//sender inputs
-	const [senderName, setSenderName] = useState("");
-	const [senderPhoneNumber, setSenderPhoneNumber] = useState("");
+const OrderInputFormsForKyrgyzstan = ({lang}) => {
+    const {t} = useTranslation()
 
-	//reciever inputs
-	const [recieverName, setRecieverName] = useState("");
-	const [recieverPhoneNumber, setrecieverPhoneNumber] = useState("");
+    const [cities, setSities] = useState([])
+    const [fromDistricts, setFromDistricts] = useState([])
+    const [toDistricts, setToDistricts] = useState([])
+    const [village, setVillage] = useState([])
 
-	//delivery inputs
-	const [deliveryType, setdeliveryType] = useState("");
-	const [deliveryWeight, setdeliveryWeight] = useState("");
-	const [deliveryHeight, setdeliveryHeight] = useState("");
-	const [deliveryWidth, setdeliveryWidth] = useState("");
-	const [deliveryLength, setdeliveryLength] = useState("");
+    const [width, setWidth] = useState('')
+    const [heigth, setHeigth] = useState('')
+    const [length, setLength] = useState('')
+    const [sum, setSum] = useState('')
 
-	//to city
-	const [toCityName, settoCityName] = useState("");
-	const [toCityAddress, settoCityAddress] = useState("");
+    //sender inputs
+    const [senderName, setSenderName] = useState("");
+    const [senderPhoneNumber, setSenderPhoneNumber] = useState("");
 
-	//from city
-	const [fromCityName, setfromCityName] = useState("");
-	const [fromCityAddress, setfromCityAddress] = useState("");
+    //reciever inputs
+    const [recieverName, setRecieverName] = useState("");
+    const [recieverPhoneNumber, setrecieverPhoneNumber] = useState("");
 
-	const [additionalDescrition, setAdditionalDescrition] = useState("");
+    //delivery inputs
+    const [deliveryType, setdeliveryType] = useState("");
+    const [deliveryWeight, setdeliveryWeight] = useState("");
+    const [deliveryHeight, setdeliveryHeight] = useState("");
+    const [deliveryWidth, setdeliveryWidth] = useState("");
+    const [deliveryLength, setdeliveryLength] = useState("");
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-	};
+    //to city
+    const [toCityName, settoCityName] = useState("");
+    const [toCityAddress, settoCityAddress] = useState("");
 
-	return (
-		<Wrapper>
-			<form onSubmit={handleSubmit}>
-				<div className="order_content_inner">
-					<div className="order_content_inner_item">
-						<div>
-							<h3>Отправителя</h3>
-							<input
-								className="custom_input"
-								type="text"
-								placeholder={"Имя"}
-								required={true}
-							/>
-							<small>*обязательное поле</small>
-							<input
-								className="custom_input"
-								type="number"
-								placeholder={"Телефон"}
-							/>
-							<small>*обязательное поле</small>
-						</div>
-						<div>
-							<h3>Откуда: Город</h3>
-							<div className="select_tag_parent">
-								<select name="" id="" className="custom_input select_tag">
-									<option value="Бишкек">Бишкек</option>
-									<option value="Бишкек">Токмок</option>
-									<option value="Бишкек">Кара-Балта</option>
-									<option value="Бишкек">Кант</option>
-								</select>
-								<small>*обязательное поле</small>
-							</div>
-							{/* <input
-                className="custom_input"
-                type="text"
-                placeholder={"Имя"}
-                required={true}
-              /> */}
+    //from city
+    const [fromCityName, setfromCityName] = useState("");
+    const [fromCityAddress, setfromCityAddress] = useState("");
 
-							<input
-								className="custom_input"
-								type="number"
-								placeholder={"Телефон"}
-							/>
-							<small>*обязательное поле</small>
-							<div>
-								<h3>Откуда: Область</h3>
-								<div className="select_tag_parent">
-									<select name="" id="" className="custom_input select_tag">
-										<option value="Naryn">Naryn</option>
-										<option value="Jalal-Abad">Jalal-Abad</option>
-										<option value="Batken">Batken</option>
-										<option value="Chuy">Chuy</option>
-									</select>
-									<small>*обязательное поле</small>
-								</div>
-							</div>
-							<div className="long_input">
-								<input
-									className="custom_input "
-									type="number"
-									placeholder={"Дополнительное описание"}
-								/>
-								<small>*обязательное поле</small>
-							</div>
-						</div>
-					</div>
+    const [additionalDescrition, setAdditionalDescrition] = useState("");
 
-					<div className="order_content_inner_item">
-						<div>
-							<h3>Получателя</h3>
-							<input
-								className="custom_input"
-								type="text"
-								placeholder={"Имя"}
-								required={true}
-							/>
-							<small>*обязательное поле</small>
-							<input
-								className="custom_input"
-								type="number"
-								placeholder={"Телефон"}
-							/>
-							<small>*обязательное поле</small>
-						</div>
-						<div>
-							<h3>Куда: Город</h3>
-							<div className="select_tag_parent">
-								<select name="" id="" className="custom_input select_tag">
-									<option value="Бишкек">Ош</option>
-									<option value="Бишкек">Токмок</option>
-									<option value="Бишкек">Кара-Балта</option>
-									<option value="Бишкек">Кант</option>
-								</select>
-								<small>*обязательное поле</small>
-							</div>
-							<input
-								className="custom_input"
-								type="number"
-								placeholder={"Телефон"}
-							/>
-							<small>*обязательное поле</small>
-						</div>
-						<div>
-							<h3>Куда: Область</h3>
-							<div className="select_tag_parent">
-								<select name="" id="" className="custom_input select_tag">
-									<option value="Naryn">Naryn</option>
-									<option value="Jalal-Abad">Jalal-Abad</option>
-									<option value="Batken">Batken</option>
-									<option value="Chuy">Chuy</option>
-								</select>
-								<small>*обязательное поле</small>
-							</div>
-						</div>
-					</div>
-					<div className="order_content_inner_item">
-						<div>
-							<h3>Данные о доставке</h3>
-							<div className="select_tag_parent">
-								<select name="" id="" className="custom_input select_tag">
-									<option value="Тип посылки/груза">Тип посылки/груза</option>
-									<option value="Бишкек">Тип посылки/груза</option>
-									<option value="Бишкек">Тип посылки/груза-Балта</option>
-									<option value="Бишкек">Тип посылки/груза</option>
-								</select>
-								<small>*обязательное поле</small>
-							</div>
-							<input
-								className="custom_input"
-								type="number"
-								placeholder={"Вес в кг."}
-							/>
-							<small>*обязательное поле</small>
-						</div>
-						<div>
-							<h3 style={{color: "transparent"}}>d</h3>
-							<input
-								className="custom_input"
-								type="text"
-								placeholder={"Высота в см."}
-								required={true}
-							/>
-							<small>*обязательное поле</small>
-							<input
-								className="custom_input"
-								type="number"
-								placeholder={"Ширина в см."}
-							/>
-							<small>*обязательное поле</small>
-							<div>
-								<input
-									className="custom_input"
-									type="number"
-									placeholder={"Длина в см."}
-								/>
-								<small>*обязательное поле</small>
-								<div className="long_input_responsive">
-									<input
-										className="custom_input "
-										type="number"
-										placeholder={"Дополнительное описание"}
-									/>
-									<small>*обязательное поле</small>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
 
-				<div className="order_content_footer">
-					<div className="order_content_footer_info">
-						<p>Стоимость доставки: 300 сом.</p>
-						<p>Примерное время: 24 часа.</p>
-					</div>
-					<div className="order_content_footer_button">
-						<button type={"submit"}>Оформить заявку</button>
-					</div>
-				</div>
-			</form>
-		</Wrapper>
-	);
+    const setValueHandler = (e) => {
+
+        const value = e.target.value
+
+        switch (e.target.name) {
+            case 'heigth':
+                setHeigth(value)
+                break
+            case 'width':
+                setWidth(value)
+                break
+            case 'length':
+                setLength(value)
+            default:
+                return ''
+        }
+    }
+    useEffect(() => {
+        width && heigth && length
+            ? setSum((width * heigth * length) / 5000 + ' кг/м³')
+            : setSum('')
+    }, [width, heigth, length])
+
+    useEffect(async () => {
+        try {
+            const sitiesResponse = await getCitiesRequest()
+            setSities(sitiesResponse)
+            setToDistricts(sitiesResponse)
+        } catch (e) {
+            console.log(e)
+        }
+    }, [])
+    const getFromDistrictHandler = async (e) => {
+        const district = await getDistrictsRequest(e.target.value)
+        setFromDistricts(district)
+    }
+    const getToDistrictHandler = async (e) => {
+        const district = await getDistrictsRequest(e.target.value)
+        setVillage(district)
+    }
+
+    return (
+        <Wrapper>
+            <form onSubmit={handleSubmit}>
+                <div className="order_content_inner">
+                    <div className="order_content_inner_item">
+                        <div>
+                            <h3>{t('form.Отправителя')}</h3>
+                            <input
+                                className="custom_input"
+                                type="text"
+                                placeholder={t('form.Имя')}
+                                required={true}
+                            />
+                            <small>*обязательное поле</small>
+                            <input
+                                className="custom_input"
+                                type="number"
+                                placeholder={"Телефон"}
+                            />
+                            <small>*обязательное поле</small>
+                        </div>
+                        <div>
+                            <h3>{t('form.Откуда_Город')}</h3>
+                            <div className="select_tag_parent">
+                                <select name="" id="" className="custom_input select_tag"
+                                        onChange={getFromDistrictHandler}>
+                                    {
+                                        cities.map(el => <option key={el.id} value={el.id}>
+                                            {lang === 'ru' ? el.name_ru : el.name_kg}
+                                        </option>)
+                                    }
+                                </select>
+                                <small>*обязательное поле</small>
+                            </div>
+                            <h3>{t('form.Откуда_Район')}</h3>
+                            <div className="select_tag_parent">
+                                <select name="" id="" className="custom_input select_tag"
+                                        disabled={!fromDistricts.length}>
+                                    {
+                                        fromDistricts.map(el => <option key={el.id} value={el.id}>
+                                            {lang === 'ru' ? el.name_ru : el.name_kg}
+                                        </option>)
+                                    }
+                                </select>
+                                <small>*обязательное поле</small>
+                                <input
+                                    className="custom_input "
+                                    type="text"
+                                    placeholder={t("Адрес")}
+                                />
+                                <small>*обязательное поле</small>
+                            </div>
+                            <div className="long_input">
+                                <input
+                                    className="custom_input "
+                                    type="text"
+                                    placeholder={t("form.Дополнительное_описание")}
+                                />
+                                <small>*обязательное поле</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="order_content_inner_item">
+                        <div>
+                            <h3>{t('form.Получателя')}</h3>
+                            <input
+                                className="custom_input"
+                                type="text"
+                                placeholder={t("form.Имя")}
+                                required={true}
+                            />
+                            <small>*обязательное поле</small>
+                            <input
+                                className="custom_input"
+                                type="number"
+                                placeholder={"Телефон"}
+                            />
+                            <small>*обязательное поле</small>
+                        </div>
+                        <div>
+                            <h3>{t('form.Куда_Район')}</h3>
+                            <div className="select_tag_parent">
+                                <select name="" id="" className="custom_input select_tag"
+                                        onChange={getToDistrictHandler}>
+                                    {
+                                        toDistricts.map(el => <option value={el.id} key={el.id}>
+                                            {lang === 'ru' ? el.name_ru : el.name_kg}
+                                        </option>)
+                                    }
+                                </select>
+                                <small>*обязательное поле</small>
+
+                            </div>
+                            <h3>{t('form.Село')}</h3>
+                            <div className="select_tag_parent">
+                                <select name="" id="" className="custom_input select_tag" disabled={!village.length}>
+                                    {
+                                        village.map(el => <option value={el.id} key={el.id}>
+                                            {lang === 'ru' ? el.name_ru : el.name_kg}
+                                        </option>)
+                                    }
+                                </select>
+                                <small>*обязательное поле</small>
+                                <input
+                                    className="custom_input "
+                                    type="text"
+                                    placeholder={t("Адрес")}
+                                />
+                                <small>*обязательное поле</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="order_content_inner_item">
+                        <div>
+                            <h3>{t('form.Данные_о_доставке')}</h3>
+                            <div className="select_tag_parent">
+                                <select name="" id="" className="custom_input select_tag">
+                                    <option value="Тип посылки/груза">Тип посылки/груза</option>
+                                    <option value="Бишкек">Тип посылки/груза</option>
+                                    <option value="Бишкек">Тип посылки/груза</option>
+                                    <option value="Бишкек">Тип посылки/груза</option>
+                                </select>
+                                <small>*обязательное поле</small>
+                            </div>
+                            <input
+                                className="custom_input"
+                                type="number"
+                                placeholder={t("form.Вес_в_кг")}
+                            />
+                            <input
+                                className="custom_input"
+                                type="text"
+                                placeholder={t("form.Объемный_вес_(кг/м³)")}
+                                value={sum}
+                                disabled
+                            />
+                            <small>*обязательное поле</small>
+                        </div>
+                        <div>
+                            <h3 style={{color: "transparent"}}>d</h3>
+                            <input
+                                className="custom_input"
+                                type="number"
+                                placeholder={t("form.Высота_в_см")}
+                                name='heigth'
+                                required={true}
+                                value={heigth}
+                                onChange={setValueHandler}
+                            />
+                            <small>*обязательное поле</small>
+                            <input
+                                className="custom_input"
+                                type="number"
+                                placeholder={t("form.Ширина_в_см")}
+                                name='width'
+                                value={width}
+                                onChange={setValueHandler}
+                            />
+                            <small>*обязательное поле</small>
+                            <div>
+                                <input
+                                    className="custom_input"
+                                    type="number"
+                                    placeholder={t("form.Длина_в_см")}
+                                    name='length'
+                                    value={length}
+                                    onChange={setValueHandler}
+                                />
+                                <small>*обязательное поле</small>
+                                <div className="long_input_responsive">
+                                    <input
+                                        className="custom_input "
+                                        type="text"
+                                        placeholder={t("form.Дополнительное_описание")}
+                                    />
+                                    <small>*обязательное поле</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="order_content_footer">
+                    <div className="order_content_footer_info">
+                        <p>{t('form.Стоимость_доставки_300_сом')}</p>
+                        <p>{t('form.Примерное_время_24_часа')}</p>
+                    </div>
+                    <div className="order_content_footer_button">
+                        <button type={"submit"}>{t('navbar.Оформить_заявку')}</button>
+                    </div>
+                </div>
+            </form>
+        </Wrapper>
+    );
 };
 
 export default OrderInputFormsForKyrgyzstan;
@@ -225,7 +293,6 @@ const Wrapper = styled.div`
     @media (max-width: 768px) {
       grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     }
-
     h3 {
       font-weight: 500;
       font-size: 14px;
@@ -249,9 +316,8 @@ const Wrapper = styled.div`
   }
 
   .long_input {
-    /* margin-left: -15px; */
-    width: 515px;
-    @media (max-width: 1250px) {
+    width: 510px;
+    @media (max-width: 1300px) {
       width: 500px;
     }
     @media (max-width: 1159px) {
@@ -279,6 +345,7 @@ const Wrapper = styled.div`
     width: 100%;
   }
 }
+
 .select_tag_parent {
   position: relative;
 
@@ -300,21 +367,24 @@ const Wrapper = styled.div`
     line-height: 1;
     border: 0;
     //height: 34px;
-    background: #F0F0F0;
+    background: #FFFFFF;
     //appearance: none;
-    -webkit-appearance: none;/
+    -webkit-appearance: none;
+  /
     //background-position-x: 244px;
-    position: relative;
-transition: all 0.3s ease;
-  option {
-    //color:red;
+  position: relative;
     transition: all 0.3s ease;
-  }
+
+    option {
+      //color:red;
+      transition: all 0.3s ease;
+    }
 
 
   }
 }
-.order_content_footer {
+
+  .order_content_footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 30px;
@@ -344,9 +414,9 @@ transition: all 0.3s ease;
   }
 
 
-
   .order_content_footer_button {
     text-align: center;
+
     button {
       padding: 17px 0;
       font-weight: 600;

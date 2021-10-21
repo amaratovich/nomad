@@ -2,30 +2,26 @@ import React from 'react'
 import styled from "styled-components"
 import SectionTitles from "../SectionTitles";
 import AboutImage from "../../assets/about-content-image.png"
+import {useTranslation} from "react-i18next";
 
 const AboutNomad = () => {
+    const {t} = useTranslation()
     return (
         <Wrapper id={"aboutus"}>
             <div className="container">
-                <SectionTitles right={true}>О NomadExpress</SectionTitles>
+                <SectionTitles right={true}>{t('aboutNomad.О_NomadExpress')}</SectionTitles>
                 <div className="about_content">
                     <div className="text">
-                        <p> NomadExpress предоставляет услуги срочной курьерской доставки как для физических, так и для
-                            юридических лиц, а также является надежным логистическим партнером по услугам доставки для
-                            интернет магазинов, кафе и ресторанов.</p>
-                        <p> Экспресс доставка документов и посылок для организации, срочная доставка корреспонденции,
-                            покупок, цветов, подарков и грузов - наиболее частые заказы в нашей компании.</p>
-                        <p> Но при этом мы не ограничиваем спектр курьерских услуг и без проблем можем купить и привезти
-                            товары и продукты из магазина, организовать доставку для онлайн магазина, офлайн магазина,
-                            кафе,
-                            ресторана или любого другого бизнеса.</p>
+                        <p>{t('aboutNomad.paragraph1')}</p>
+                        <p>{t('aboutNomad.paragraph2')}</p>
+                        <p>{t('aboutNomad.paragraph3')}</p>
                     </div>
                     <div className="image">
                         <img src={AboutImage} alt=""/>
                     </div>
                 </div>
                 <div className = "about_footer_text">
-                <p>В любое время на нашем сайте вы можете вызвать курьера всего за минуту и оформить курьерскую доставку без лишних проблем, переговоров и звонков в колл центр. Наша служба доставки день в день качественно делает свою работу и обеспечивает низкую стоимость курьерских услуг.</p>
+                <p>{t('aboutNomad.info')}</p>
                 </div>
             </div>
         </Wrapper>

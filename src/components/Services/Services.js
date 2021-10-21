@@ -2,19 +2,19 @@ import React from 'react'
 import styled from "styled-components"
 import ServiceLogo from "../../assets/services_avatar.png"
 import SectionTitles from "../SectionTitles";
+import {useTranslation} from "react-i18next";
 
 const Services = () => {
+    const {t} = useTranslation()
     return (
         <Wrapper id={"services"}>
             <div className="container">
-                <SectionTitles right={false} className="services_title">Формула расчета стоимости доставки</SectionTitles>
+                <SectionTitles right={false} className="services_title">{t('services.Формула_расчета_стоимости_доставки')}</SectionTitles>
 
                 <div className="services_content">
                     <header>
-                        <h3 className="services_content_title">Длина × Ширина × Высота (см) / 5000 = Объемный вес
-                            (кг/м³)</h3>
-                        <h4 className="services_content_subtitle">Например: 30 × 30 × 30 / 5000 = 5.4 (объемный
-                            вес)</h4>
+                        <h3 className="services_content_title">{t('services.formula')}</h3>
+                        <h4 className="services_content_subtitle">{t('services.example')}</h4>
                     </header>
                     <div className="services_content_items">
                         <div className="services_content_item">
@@ -22,13 +22,13 @@ const Services = () => {
                                 <img src={ServiceLogo} alt=""/>
                             </div>
                             <div className="info">
-                                Если объем.вес ≤ 1 кг/м³, то цена 200 сом.
+                                {t('services.examples')}
                             </div>
                         </div>
                         <div className="services_content_item">
 
                             <div className="info">
-                                Если объем.вес ≤ 1 кг/м³, то цена 200 сом.
+                                {t('services.examples')}
                             </div>
                             <div className="img">
                                 <img src={ServiceLogo} alt=""/>
@@ -36,7 +36,7 @@ const Services = () => {
                         </div>
                         <div className="services_content_item">
                             <div className="info">
-                                Если объем.вес ≤ 1 кг/м³, то цена 200 сом.
+                                {t('services.examples')}
                             </div>
                             <div className="img">
                                 <img src={ServiceLogo} alt=""/>
@@ -48,12 +48,12 @@ const Services = () => {
                                 <img src={ServiceLogo} alt=""/>
                             </div>
                             <div className="info">
-                                Если объем.вес ≤ 1 кг/м³, то цена 200 сом.
+                                {t('services.examples')}
                             </div>
                         </div>
                     </div>
                     <div className="info_text">
-                        Объем.вес > 300 кг/м³, то цена рассчитывается индивидуально.
+                        {t('services.info_text')}
                     </div>
                 </div>
             </div>

@@ -1,22 +1,25 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from "styled-components"
-import HomeBackground from "../../assets/home-background.png"
+import HomeBackgroundBish from "../../assets/home-background.png"
+import HomeBackgroundKyr from "../../assets/home-background-kg.png"
 import OrederForm from "../OrederForm/OrederForm";
-import Services from "../Services/Services";
 import ResponsiveHeader from "../ResponsiveNavbar/ResponsiveHeader";
+import {useTranslation} from "react-i18next";
 
-const Home = () => {
+const Home = ({lang}) => {
+	const [isBishkekActive, setIsBishkekActive] = useState(true);
+	const changeActive = () => setIsBishkekActive(!isBishkekActive)
 	return (
 		<Wrapper>
 			<div className="home_container">
 				<div className="home_bg">
-					<img src={HomeBackground} alt=""/>
+						<img src={isBishkekActive ? HomeBackgroundBish : HomeBackgroundKyr} alt=""/>
 				</div>
 				<div className="container">
 					<div className="responsive_header">
 						<ResponsiveHeader/>
 					</div>
-					<OrederForm/>
+					<OrederForm active={isBishkekActive} setActive={changeActive} lang={lang}/>
 				</div>
 			</div>
 		</Wrapper>
@@ -27,7 +30,7 @@ export default Home
 
 const Wrapper = styled.div`
   position: relative;
-  //min-height: 100vh;
+  min-height: 80vh;
   //padding-top: 118px;
   padding-bottom: 15px;
   //margin-top: 100px;
@@ -48,7 +51,7 @@ const Wrapper = styled.div`
 
     img {
       width: 100%;
-      //height: 100%;
+      height: 102%;
       //min-height: 100vh;
       background-position: right;
       background-size: contain;

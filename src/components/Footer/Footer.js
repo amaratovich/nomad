@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from "styled-components"
 import FooterLogo from "../../assets/footer-logo.png"
+import {useTranslation} from "react-i18next";
 
 const Footer = () => {
+	const {t} = useTranslation()
 	return (
 		<div className="big_container">
 
@@ -15,13 +17,13 @@ const Footer = () => {
 						</div>
 						<div className="footer_links">
 							<div>
-								<a href="#">Пункты приема-выдач</a>
+								<a href="#">{t('footer.Пункты_приема_выдач')}</a>
 							</div>
 							<div>
-								<a href="#">Контакты</a>
+								<a href="#">{t('navbar.Контакты')}</a>
 							</div>
 							<div>
-								<a href="#">Мы в социальных сетях</a>
+								<a href="#">{t('footer.Мы_в_социальных_сетях')}</a>
 							</div>
 						</div>
 						<div className="footer_info">
@@ -31,11 +33,11 @@ const Footer = () => {
 								<a href="#">0707 08 99 88</a>
 								<a href="#">0777 08 99 88</a>
 							</div>
-							<p>Рабочие часы: c 9:00 до 19:00 (без выходных)</p>
+							<p>{t('footer.рабочие_дни')}</p>
 							<p>kgnomadexpress@gmail.com</p>
 						</div>
 						<div className="footer_footer">
-							<p>© 2021 NomadExpress. Все права защищены.</p>
+							<p>© 2021 NomadExpress. {t('footer.Все_права_защищены')}</p>
 						</div>
 					</div>
 				</div>

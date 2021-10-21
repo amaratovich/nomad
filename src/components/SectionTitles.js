@@ -34,7 +34,7 @@ const Wrapper = styled.div`
     position: absolute;
     content: "";
     bottom: -70px;
-    left: ${({right}) => right ? "auto" : "-25px"};
+    left: ${({right}) => right ? "auto" : "0px"};
     right: ${({right}) => right ? "-20px" : "auto"};
     background-image: url(${GreenLine});
     background-repeat: no-repeat;

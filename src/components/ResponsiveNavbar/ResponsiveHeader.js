@@ -1,26 +1,28 @@
 import React from 'react'
 import styled from "styled-components"
+import {useTranslation} from "react-i18next";
 
 
 const ResponsiveHeader = () => {
+	const {t} = useTranslation()
 	return (
 		<Wrapper>
 
 			<ul>
 				<li>
-					<a href="#aboutus" className="links">О нас</a>
+					<a href="#aboutus" className="links">{t('navbar.О_нас')}</a>
 				</li>
 				<li>
-					<a href="#services" className="links">Услуги</a>
+					<a href="#services" className="links">{t('navbar.Услуги')}</a>
 				</li>
 				<li>
-					<a href="#" className="links">Оформить заявку</a>
+					<a href="#" className="links">{t('navbar.Оформить_заявку')}</a>
 				</li>
 				<li>
-					<a href="#tracking" className="links">Отследить посылку</a>
+					<a href="#tracking" className="links">{t('navbar.Отследить_посылку')}</a>
 				</li>
 				<li>
-					<a href="#contacts" className="links">Контакты</a>
+					<a href="#contacts" className="links">{t('navbar.Контакты')}</a>
 				</li>
 			</ul>
 
@@ -31,23 +33,28 @@ const ResponsiveHeader = () => {
 export default ResponsiveHeader
 
 const Wrapper = styled.div`
-  padding: 30px 0;
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    @media (max-width: 500px) {
-      align-items: flex-start;
-    }
-    li {
-      a {
-        font-size: 20px;
-        line-height: 28px;
-        color: #22343D;
-        @media (max-width: 500px) {
-          //font-size: 17px;
-        }
-      }
-    }
-  }
+	padding: 30px 0;
+	@media(max-width: 500px) {
+		padding: 0;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		@media (max-width: 500px) {
+			align-items: flex-start;
+			
+		}
+
+		li {
+			a {
+				font-size: 20px;
+				line-height: 28px;
+				color: #ffffff;
+				@media (max-width: 500px) {
+					//font-size: 17px;
+				}
+			}
+		}
+	}
 `

@@ -2,8 +2,10 @@ import React from 'react'
 import styled from "styled-components"
 import BackgroundImage from "../../assets/TrackPakcages-bg.png"
 import SectionTitles from "../SectionTitles";
+import {useTranslation} from "react-i18next";
 
 const TrackPackages = () => {
+	const {t} = useTranslation()
 	return (
 		<Wrapper id={"tracking"}>
 			<div className="big_container">
@@ -11,20 +13,19 @@ const TrackPackages = () => {
 					<img src={BackgroundImage} alt=""/>
 				</div>
 				<div className="container">
-					<h1 className = "main_title">Ваше доверие- наша работа</h1>
+					<h1 className = "main_title">{t('tracking.Ваше_доверие-наша_работа')}</h1>
 					<div className="content">
 						<div className="content_inner">
-							<SectionTitles black={false} right={false}>Отследить посылку (трекинг)</SectionTitles>
+							<SectionTitles black={false} right={false}>{t('navbar.Отследить_посылку')} (трекинг)</SectionTitles>
 							<form>
 								<input type="text" className="package_track_input"
-								       placeholder={"Введите ваш трекинг номер"}/>
+								       placeholder={t("tracking.Введите_ваш_трекинг_номер")}/>
 								<div className="button">
-									<button>Отследить</button>
+									<button>{t('tracking.Отследить')}</button>
 								</div>
 							</form>
 							<div className="info_text">
-								Вы можете самостоятельно отслеживать свою посылку прямо из дома, для этого нужно ввести
-								уникальный код и следить за историей изменения статусов.
+								{t('tracking.info')}
 							</div>
 						</div>
 					</div>

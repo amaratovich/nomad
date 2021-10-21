@@ -3,17 +3,19 @@ import styled from "styled-components"
 import SectionTitles from "../SectionTitles";
 import ItemBackground from "../../assets/price-advantage.png"
 import PriceLogo from "../../assets/price-bg-icon.png"
+import {useTranslation} from "react-i18next";
 
 const PriceAdvantage = () => {
+    const {t} = useTranslation()
     return (
         <Wrapper>
             <div className="container">
-                <SectionTitles right={true}>Наши услуги и преимущества</SectionTitles>
-                <h3>Мы предоставляем:</h3>
+                <SectionTitles right={true}>{t("priceAdvantage.Наши_услуги_и_преимущества")}</SectionTitles>
+                <h3>{t('priceAdvantage.Мы_предоставляем')}</h3>
                 <div className="buttons">
-                    <button>Услуги выкупа</button>
-                    <button>Доставку по городу Бишкек</button>
-                    <button>Доставку по всему Кыргызстану</button>
+                    <button>{t('priceAdvantage.Услуги_выкупа')}</button>
+                    <button>{t('priceAdvantage.Доставку_по_городу_Бишкек')}</button>
+                    <button>{t('priceAdvantage.Доставку_по_всему_Кыргызстану')}</button>
                 </div>
             </div>
             <div className="big_container">
