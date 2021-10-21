@@ -7,6 +7,7 @@ import Prev from "../../assets/left-arrow.png"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {imageData} from "./PartnersImageData";
+import {useTranslation} from "react-i18next";
 
 const responsive = {
 	superLargeDesktop: {
@@ -29,10 +30,11 @@ const responsive = {
 };
 
 const Partners = () => {
+	const {t} = useTranslation()
 	return (
 		<Wrapper>
 			<div className="container">
-				<SectionTitles right={false}>С нами сотрудничают:</SectionTitles>
+				<SectionTitles right={false}>{t('partners.С_нами_сотрудничают')}</SectionTitles>
 				<div className="partners_content">
 					<Carousel
 						swipeable={true}
@@ -56,7 +58,7 @@ const Partners = () => {
 						{
 							imageData.map((item) => {
 								return <div className="partners_item" key={item.id}>
-									<img src={item.image} alt=""/>
+									<img src={item.image} alt="" />
 								</div>
 							})
 						}
@@ -113,7 +115,7 @@ const Wrapper = styled.div`
     }
   }
   .partners_item {
-    //height: 200px;
+    height: 80px;
 margin-right: 30px;
     @media (max-width: 500px) {
       margin: 0 auto;
@@ -124,9 +126,9 @@ margin-right: 30px;
       height: 100%;
       //height: 300px;
       @media (max-width: 760px) {
-        //width: 80%;
+        width: 90%;
         margin: 0 auto;
-        //height: 300px;
+        height: 40px;
       }
     }
   }

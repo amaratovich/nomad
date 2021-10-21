@@ -2,39 +2,39 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import OrderFormInputsForBishkek from "./OrderFormInputsForBishkek";
 import OrderInputFormsForKyrgyzstan from "./OrderInputFormsForKyrgyzstan";
+import {useTranslation} from "react-i18next";
 
-const OrderForm = () => {
-	const [isBishkekActive, setIsBishkekActive] = useState(true);
+const OrderForm = ({active,setActive, lang}) => {
 
-	const changeActive = () => {
-		setIsBishkekActive(!isBishkekActive);
-	};
 
+	const {t} = useTranslation()
 	return (
 		<Wrapper>
 			<div className="order_content">
 				<div className="order_header">
-					<h3>Оформление заявки</h3>
+					<h3>{t('form.Оформление_заявки')}</h3>
 					<div className="order_header_buttons">
 						<button
-							className={`order_header_button ${isBishkekActive && "active"}`}
-							onClick={changeActive}
+							className={`order_header_button ${active && "active"}`}
+							onClick={setActive}
 						>
 							Бишкек
 						</button>
 						<button
-							className={`order_header_button ${!isBishkekActive && "active"}`}
-							onClick={changeActive}
+							className={`order_header_button ${!active && "active"}`}
+							onClick={setActive}
 						>
 							Кыргызстан
 						</button>
 					</div>
 				</div>
-				{isBishkekActive ? (
-					<OrderFormInputsForBishkek/>
-				) : (
-					<OrderInputFormsForKyrgyzstan/>
-				)}
+				{
+					active
+					?
+					<OrderFormInputsForBishkek lang={lang}/>
+					:
+					<OrderInputFormsForKyrgyzstan lang={lang}/>
+				}
 			</div>
 		</Wrapper>
 	);
@@ -93,6 +93,7 @@ const Wrapper = styled.div`
           font-size: 18px;
           line-height: 27px;
           color: #35824e;
+		  padding: 10px 20px;
           @media (max-width: 768px) {
             font-size: 16px;
           }
@@ -107,7 +108,7 @@ const Wrapper = styled.div`
           background: #ffffff;
           box-shadow: 0px 8px 24px rgba(129, 187, 67, 0.16);
           border-radius: 12px;
-          padding: 10px 30px;
+          padding: 10px 20px;
         }
       }
     }

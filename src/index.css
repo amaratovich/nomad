@@ -44,8 +44,6 @@ code {
   margin-top: 10px;
   margin-bottom: 5px;
 }
-
-
 @media (min-width: 1600px) {
   .big_container{
     position: relative;

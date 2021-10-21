@@ -3,15 +3,17 @@ import styled from "styled-components"
 import SectionTitles from "../SectionTitles";
 import BckgroundMap from "../../assets/Background map.png"
 import RightArrow from "../../assets/Triangle-right-arrow.png"
+import {useTranslation} from "react-i18next";
 
 const GeographicDirection = () => {
+	const {t} = useTranslation()
 	return (
 		<Wrapper>
 			<div className = "big_container">
 
 			<div className="container">
 				<header>
-					<SectionTitles right={true}>Географические направления</SectionTitles>
+					<SectionTitles right={true}>{t('geographic_direction.Географические_направления')}</SectionTitles>
 				</header>
 			</div>
 			<div className="content">
@@ -22,8 +24,8 @@ const GeographicDirection = () => {
 					<div className="container">
 						<div className="content_inner">
 							<div className="content_inner_item">
-								<h3>Тарифы по Кыргызстану</h3>
-								<p>время доставки 24 часа</p>
+								<h3>{t('geographic_direction.Тарифы_по_Кыргызстану')}</h3>
+								<p>{t('geographic_direction.время_доставки_24_часа')}</p>
 								<div className="price">
 									200
 								</div>
@@ -36,7 +38,7 @@ const GeographicDirection = () => {
 								</div>
 							</div>
 							<div className="content_inner_item second_item">
-								<h3>Тарифы по городу</h3>
+								<h3>{t('geographic_direction.Тарифы_по_городу')}</h3>
 								<div className="info">
 									<div className="price">
 										200
@@ -106,7 +108,7 @@ const Wrapper = styled.div`
     position: absolute;
     top: -50px;
     z-index: -1;
-    left: -20px;
+    left: 0;
     @media (max-width: 768px) {
       top: -20px;
     }
